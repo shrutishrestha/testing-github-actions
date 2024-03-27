@@ -31,7 +31,7 @@ jobs:
         run: echo "Environment variable set"
 
       - name: Login to docker registry        
-        echo ${{secrets.ARCDOCKER_PASSWORD}}" "${{secrets.ARCDOCKER_USERNAME}}"
+        run: echo ${{secrets.ARCDOCKER_PASSWORD}}" | "${{secrets.ARCDOCKER_USERNAME}}"
       # build and push docker image
       - name: Build and Push Docker Image
         uses: mr-smithers-excellent/docker-build-push@v6
