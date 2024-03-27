@@ -31,7 +31,7 @@ jobs:
         run: echo "Environment variable set"
 
       - name: Login to docker registry        
-        run: echo "${{ secrets.p }}" | docker login -u "${{ secrets.ARCDOCKER_u }}" --password-stdin arcdocker.rs.gsu.edu
+        run: echo "${{ secrets.P }}" | docker login -u "${{ secrets.U }}" --password-stdin arcdocker.rs.gsu.edu
       
       # build and push docker image
       - name: Build and Push Docker Image
