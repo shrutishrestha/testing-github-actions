@@ -29,12 +29,14 @@ jobs:
         env:
           MY_GITHUB_PAT: ${{ secrets.K8S_TEST004_TESTING_GITHUB_ACTIONS }}
         run: echo "Environment variable set"
-        
+
+      - name: Login to docker registry        
+        echo ${{secrets.ARCDOCKER_PASSWORD}}" "${{secrets.ARCDOCKER_USERNAME}}"
       # build and push docker image
       - name: Build and Push Docker Image
         uses: mr-smithers-excellent/docker-build-push@v6
         with:
-          image: arcdocker.rs.gsu.edu/test_github_actions_image
+          image: test_github_actions_image
           tags: v1, latest
           registry: arcdocker.rs.gsu.edu
           username: ${{secrets.ARCDOCKER_USERNAME}}
