@@ -25,6 +25,8 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - name: Checkout
         uses: actions/checkout@v3
+	env:
+           MY_GITHUB_PAT: ${{ SECRETS.K8S_TEST004_TESTING_GITHUB_ACTIONS}}
       - name: Clone Repository
         run: |
            git clone git@github.com:shrutishrestha/testing-github-actions.git
