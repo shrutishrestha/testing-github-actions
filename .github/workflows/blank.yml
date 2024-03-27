@@ -30,9 +30,16 @@ jobs:
           MY_GITHUB_PAT: ${{ secrets.K8S_TEST004_TESTING_GITHUB_ACTIONS }}
         run: echo "Environment variable set"
         
-      - name: Clone Repository
-        run: |
-          git clone https://github.com/shrutishrestha/testing-github-actions.git              
+      # build and push docker image
+      - name: Build and Push Docker Image
+        uses: mr-smithers-excellent/docker-build-push@v6
+        with:
+          image: arcdocker.rs.gsu.edu/test_github_actions_image
+          tags: v1, latest
+          registry: arcdocker.rs.gsu.edu
+          username: ${{secrets.ARCDOCKER_USERNAME}}
+          password: ${{secrets.ARCDOCKER_PASSWORD}}
+ 
       # Runs a single command using the runners shell
       - name: Run a one-line script
         run: echo Hello, world!
