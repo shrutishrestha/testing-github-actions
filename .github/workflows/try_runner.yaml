@@ -3,11 +3,11 @@ on: [push]
 jobs:
   check-bats-version:
     runs-on: 
-      group: ubuntu-runners
+      group: self-hosted
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
           node-version: '14'
-      - run: python3 main.py
+      - run: python main.py
 
