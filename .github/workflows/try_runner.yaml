@@ -2,8 +2,7 @@ name: learn-github-actions
 on: [push]
 jobs:
   build:
-    runs-on: 
-      group: self-hosted
+    runs-on: self-hosted
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
