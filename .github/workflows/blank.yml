@@ -1,5 +1,3 @@
-# This is a basic workflow to help you get started with Actions
-
 name: CI
 
 # Controls when the workflow will run
@@ -23,8 +21,28 @@ jobs:
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v3
+      - name: Checkout
+        uses: actions/checkout@v2
+        
+      # Incorrect indentation and capitalization fixed below
+      - name: Set up environment variable
+        env:
+          MY_GITHUB_PAT: ${{ secrets.K8S_TEST004_TESTING_GITHUB_ACTIONS }}
+        run: echo "Environment variable set"
 
+      - name: Login to docker registry        
+        run: echo "${{ secrets.P }}" | docker login -u "${{ secrets.U }}" --password-stdin arcdocker.rs.gsu.edu
+      
+      # build and push docker image
+      - name: Build and Push Docker Image
+        uses: mr-smithers-excellent/docker-build-push@v6
+        with:
+          image: test_github_actions_image
+          tags: v1, latest
+          registry: arcdocker.rs.gsu.edu
+          username: ${{secrets.ARCDOCKER_USERNAME}}
+          password: ${{secrets.ARCDOCKER_PASSWORD}}
+ 
       # Runs a single command using the runners shell
       - name: Run a one-line script
         run: echo Hello, world!
@@ -32,5 +50,4 @@ jobs:
       # Runs a set of commands using the runners shell
       - name: Run a multi-line script
         run: |
-          echo Add other actions to build,
-          echo test, and deploy your project.
+          python main.py
