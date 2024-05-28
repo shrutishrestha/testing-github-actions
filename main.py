@@ -1,2 +1,1 @@
-print("hello from main")
-print("hello from macbook")
+print("hello from branch new-ci-workflow")
