@@ -11,4 +11,4 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '20'
-      - run: python https://github.com/shrutishrestha/testing-github-actions/blob/new-ci-workflow/main.py
+      - run: python main.py
