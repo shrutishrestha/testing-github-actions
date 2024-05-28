@@ -1,0 +1,14 @@
+name: test-actions
+run-name: test-actions-run
+on: [push]
+jobs:
+  check-bats-version:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: new-ci-workflow
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - run: python https://github.com/shrutishrestha/testing-github-actions/blob/new-ci-workflow/main.py
